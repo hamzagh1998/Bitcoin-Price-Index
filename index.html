@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Bitcoin Price Index</title>
+</head>
+<body>
+  <!-- app 1 -->
+  <div id="app1" class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+        <!-- custom componenet -->
+        <header-ui v-bind:title="title" v-bind:bpi="bpi"/>
+      </div>
+    </div>
+  </div>
+  <!-- app 2 -->
+  <div id="app2" class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+        <hr>
+        <!-- custom componenet -->
+        <select-ui v-bind:currencies="supportedCurrenciesObj" 
+                   v-bind:currentprice="currentPriceObj"
+                   v-bind:currency="currency"
+                   v-on:on-change='fetchCurrentPrice'/>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <font color="#fff">Powered by</font> <a href="https://www.coindesk.com/coindesk-api">CoinDesk</a>
+  </footer>
+</body>
+<script src="vendors/js/vue.js"></script>
+<script src="js/app1.js"></script>
+<script src="js/app2.js"></script>
+</html>
