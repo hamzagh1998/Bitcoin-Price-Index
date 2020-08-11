@@ -7,6 +7,9 @@ const currentPriceUi = {
       type: String,
       default: '',
     },
+    value: {
+      type: Number
+    }
   },
   template: `
     <div class="card m-1">
@@ -15,7 +18,7 @@ const currentPriceUi = {
       </div>
       <div class="card-body">
         <p>
-          <span class="text-primary">Time update: </span>
+          <span class="text-primary">Last update: </span>
           {{ currentprice.time.updated }}
         </p>
         <p>
@@ -24,7 +27,7 @@ const currentPriceUi = {
         </p>
         <p>
           <span class="text-primary">Rate: </span>
-          {{ currentprice.bpi[currency].rate }}
+          {{ parseFloat(currentprice.bpi[currency].rate.replace(',', '.')) * value }} {{ currency }}
         </p>
       </div>
     </div>
@@ -53,14 +56,23 @@ const selectUi = {
           <option v-for="currency in currencies" v-bind:value="currency.currency">
             {{ currency.currency }} - {{ currency.country }}
           </option>
-        </select>
+          </select>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" v-model="value">
+          </div>
       </div>
       <current-price-ui v-if="currentprice && currency"
                         v-bind:currentprice="currentprice"
-                        v-bind:currency="currency"                  
+                        v-bind:currency="currency"  
+                        v-bind:value="Number(value)"                
       />
     </div>
   `,
+  data() {
+    return {
+      value: 1,
+    }
+  },
   components: {
     'current-price-ui': currentPriceUi,
   }
@@ -69,9 +81,10 @@ const selectUi = {
 const app2 = new Vue({
   el: '#app2',
   data: {
-    supportedCurrenciesObj: null, // selectUi component
-    currentPriceObj: null, // currentPriceUi component
-    currency: null, // currentPriceUi component
+    supportedCurrenciesObj: null, 
+    currentPriceObj: null, 
+    currency: null, 
+    value: 1, 
   },
   methods: {
     fetchCurrencies(url) {

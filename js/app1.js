@@ -14,17 +14,17 @@ const bpiBox = {
     }
   },
   template: `
-    <div col="col-xs-12 col-sm-12 col-md-4">
-      <div class="card m-1">
-        <div class="card-header">
-          {{ bpiObj.code }}
+        <div col="col-xs-10 col-sm-10 col-md-4">
+          <div class="card">
+            <div class="card-header">
+              {{ bpiObj.code }}
+            </div>
+            <div class="card-body text-left">
+              <p><span class="text-primary">Description: </span>{{ bpiObj.description }}</p>
+              <p><span class="text-primary">Rate: </span>{{ bpiObj.rate }} {{ bpiObj.code }}</p>
+            </div>
+          </div>
         </div>
-        <div class="card-body text-left">
-          <p><span class="text-primary">Description: </span>{{ bpiObj.description }}</p>
-          <p><span class="text-primary">Rate: </span>{{ bpiObj.rate }}</p>
-        </div>
-      </div>
-    </div>
   `,
 }
 
@@ -43,13 +43,11 @@ const header = {
       <h1>{{ title }}</h1>
       <img src="assets/Bitcoin.png" width="100px" height="100px">
       <h3><font color="#f2a900">{{ bpi.chartName }}</font></3>
-      <h4><span class="text-warning">Date updated: </span>{{ bpi.time.updated }}<h4>
-      <div class="row">
+      <h4><span class="text-warning">Last update: </span>{{ bpi.time.updated }}<h4>
         <!-- CHILD COMPONENT (DRY)-->  
         <bpi-box v-for="(curr, index) in Object.keys(bpi.bpi)" 
         v-bind:key="index"
         v-bind:bpiObj="bpi.bpi[curr]"/>
-      </div>
     </div>
   `,
   components: {

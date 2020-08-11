@@ -11,7 +11,7 @@
   <!-- app 1 -->
   <div id="app1" class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+      <div class="col-xs-12 col-sm-12 col-md-8 offset-md-2">
         <!-- custom componenet -->
         <header-ui v-bind:title="title" v-bind:bpi="bpi"/>
       </div>
@@ -23,16 +23,17 @@
       <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
         <hr>
         <!-- custom componenet -->
-        <select-ui v-bind:currencies="supportedCurrenciesObj" 
+          <select-ui v-bind:currencies="supportedCurrenciesObj" 
                    v-bind:currentprice="currentPriceObj"
                    v-bind:currency="currency"
-                   v-on:on-change='fetchCurrentPrice'/>
+                   v-on:on-change='fetchCurrentPrice'
+          />
         <hr>
       </div>
     </div>
   </div>
   <footer>
-    <font color="#fff">Powered by</font> <a href="https://www.coindesk.com/coindesk-api">CoinDesk</a>
+    <font color="#fff">Powered by</font> <a target="_blank" href="https://www.coindesk.com/price/bitcoin">CoinDesk</a>
   </footer>
 </body>
 <script src="vendors/js/vue.js"></script>
